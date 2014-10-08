@@ -2,13 +2,13 @@
 
 
 // Declare app level module which depends on filters, and services
-angular.module('myApp', [
+angular.module('ProxyPAC', [
   'ngRoute',
-  'myApp.filters',
-  'myApp.services',
+  'ProxyPAC.filters',
+  'ProxyPAC.services',
   'lbServices',
-  'myApp.directives',
-  'myApp.controllers'
+  'ProxyPAC.directives',
+  'ProxyPAC.controllers'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/groups', {templateUrl: 'partials/groups.html', controller: 'Groups'});

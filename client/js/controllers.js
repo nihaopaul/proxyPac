@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', [])
+angular.module('ProxyPAC.controllers', [])
   .controller('Groups', ['$scope', 'Group', '$routeParams', function($scope, Group, $routeParams) {
     $scope.groups = Group.find();
   }])
