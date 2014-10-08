@@ -1,0 +1,19 @@
+{
+  "name": "Address",
+  "base": "PersistedModel",
+  "properties": {
+    "url": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+      "Server": {
+        "model": "Server",
+        "type": "belongsTo"
+      }
+    },
+  "acls": [],
+  "methods": []
+}

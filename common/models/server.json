@@ -1,0 +1,35 @@
+{
+  "name": "Server",
+  "base": "PersistedModel",
+  "properties": {
+    "type": {
+      "type": "string",
+      "required": true
+    },
+    "address": {
+      "type": "string",
+      "required": false
+    },
+    "port": {
+      "type": "number",
+      "required": false
+    },
+    "order": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "Addresses": {
+      "model": "Address",
+      "type": "hasMany"
+    },
+    "Group": {
+      "model": "Group",
+      "type": "belongsTo"
+    }
+  },
+  "acls": [],
+  "methods": []
+}

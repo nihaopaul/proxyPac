@@ -1,0 +1,29 @@
+{
+  "name": "proxyPAC",
+  "version": "0.0.1",
+  "authors": [
+    "Paul Adams <nihaopaul@gmail.com>"
+  ],
+  "description": "ProxyPac for the network",
+  "main": "index.html",
+  "keywords": [
+    "Proxy",
+    "socks",
+    "proxy.pac"
+  ],
+  "license": "MIT",
+  "homepage": "http://nihaopaul.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.26",
+    "angular-route": "~1.2.26",
+    "angular-resource": "~1.2.26"
+  }
+}

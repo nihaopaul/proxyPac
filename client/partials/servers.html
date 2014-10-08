@@ -1,0 +1,9 @@
+
+<div>Number of servers in our db: <span>{{servers.length}}</span></div>
+<ul>
+  <li ng-repeat="server in servers"><a ng-href="/#/group/{{server.groupId}}/server/{{server.id}}" >{{server.type}}://{{server.address}}:{{server.port}} </a></li>
+</ul>
+
+<pre>
+{{servers}}
+</pre>

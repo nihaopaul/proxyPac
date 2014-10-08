@@ -1,0 +1,25 @@
+{
+  "name": "Group",
+  "base": "PersistedModel",
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "order": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "Servers": {
+      "model": "Server",
+      "type": "hasMany"
+    }
+  },
+  "acls": [],
+  "methods": []
+}
+
+
