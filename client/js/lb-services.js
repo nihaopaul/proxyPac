@@ -57,6 +57,24 @@ module.factory(
           method: "PUT",
         },
 
+        // INTERNAL. Use Group.Address.findById() instead.
+        "prototype$__findById__Address": {
+          url: urlBase + "/Groups/:id/Address/:fk",
+          method: "GET",
+        },
+
+        // INTERNAL. Use Group.Address.destroyById() instead.
+        "prototype$__destroyById__Address": {
+          url: urlBase + "/Groups/:id/Address/:fk",
+          method: "DELETE",
+        },
+
+        // INTERNAL. Use Group.Address.updateById() instead.
+        "prototype$__updateById__Address": {
+          url: urlBase + "/Groups/:id/Address/:fk",
+          method: "PUT",
+        },
+
         // INTERNAL. Use Group.Servers() instead.
         "prototype$__get__Servers": {
           url: urlBase + "/Groups/:id/Servers",
@@ -79,6 +97,31 @@ module.factory(
         // INTERNAL. Use Group.Servers.count() instead.
         "prototype$__count__Servers": {
           url: urlBase + "/Groups/:id/Servers/count",
+          method: "GET",
+        },
+
+        // INTERNAL. Use Group.Address() instead.
+        "prototype$__get__Address": {
+          url: urlBase + "/Groups/:id/Address",
+          method: "GET",
+          isArray: true,
+        },
+
+        // INTERNAL. Use Group.Address.create() instead.
+        "prototype$__create__Address": {
+          url: urlBase + "/Groups/:id/Address",
+          method: "POST",
+        },
+
+        // INTERNAL. Use Group.Address.destroyAll() instead.
+        "prototype$__delete__Address": {
+          url: urlBase + "/Groups/:id/Address",
+          method: "DELETE",
+        },
+
+        // INTERNAL. Use Group.Address.count() instead.
+        "prototype$__count__Address": {
+          url: urlBase + "/Groups/:id/Address/count",
           method: "GET",
         },
 
@@ -426,6 +469,12 @@ module.factory(
         // INTERNAL. Use Server.Group() instead.
         "::get::Server::Group": {
           url: urlBase + "/Servers/:id/Group",
+          method: "GET",
+        },
+
+        // INTERNAL. Use Address.Group() instead.
+        "::get::Address::Group": {
+          url: urlBase + "/Addresses/:id/Group",
           method: "GET",
         },
       }
@@ -818,6 +867,270 @@ module.factory(
           var action = TargetResource["::updateById::Group::Servers"];
           return action.apply(R, arguments);
         };
+    /**
+     * @ngdoc object
+     * @name lbServices.Group.Address
+     * @object
+     * @description
+     *
+     * The object `Group.Address` groups methods
+     * manipulating `Address` instances related to `Group`.
+     *
+     * Use {@link lbServices.Group#Address} to query
+     * all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Group#Address
+         * @methodOf lbServices.Group
+         *
+         * @description
+         *
+         * Queries Address of Group.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {Function(Array.<Object>, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Address` object.)
+         * </em>
+         */
+        R.Address = function() {
+          var TargetResource = $injector.get("Address");
+          var action = TargetResource["::get::Group::Address"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Group.Address#count
+         * @methodOf lbServices.Group.Address
+         *
+         * @description
+         *
+         * Counts Address of Group.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.Address.count = function() {
+          var TargetResource = $injector.get("Address");
+          var action = TargetResource["::count::Group::Address"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Group.Address#create
+         * @methodOf lbServices.Group.Address
+         *
+         * @description
+         *
+         * Creates a new instance in Address of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Address` object.)
+         * </em>
+         */
+        R.Address.create = function() {
+          var TargetResource = $injector.get("Address");
+          var action = TargetResource["::create::Group::Address"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Group.Address#destroyAll
+         * @methodOf lbServices.Group.Address
+         *
+         * @description
+         *
+         * Deletes all Address of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.Address.destroyAll = function() {
+          var TargetResource = $injector.get("Address");
+          var action = TargetResource["::delete::Group::Address"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Group.Address#destroyById
+         * @methodOf lbServices.Group.Address
+         *
+         * @description
+         *
+         * Delete a related item by id for Address
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for Address
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `` – `{undefined=}` - 
+         */
+        R.Address.destroyById = function() {
+          var TargetResource = $injector.get("Address");
+          var action = TargetResource["::destroyById::Group::Address"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Group.Address#findById
+         * @methodOf lbServices.Group.Address
+         *
+         * @description
+         *
+         * Find a related item by id for Address
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for Address
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Address` object.)
+         * </em>
+         */
+        R.Address.findById = function() {
+          var TargetResource = $injector.get("Address");
+          var action = TargetResource["::findById::Group::Address"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Group.Address#updateById
+         * @methodOf lbServices.Group.Address
+         *
+         * @description
+         *
+         * Update a related item by id for Address
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for Address
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Address` object.)
+         * </em>
+         */
+        R.Address.updateById = function() {
+          var TargetResource = $injector.get("Address");
+          var action = TargetResource["::updateById::Group::Address"];
+          return action.apply(R, arguments);
+        };
 
     /**
     * @ngdoc property
@@ -859,49 +1172,6 @@ module.factory(
         // INTERNAL. Use Server.Group() instead.
         "prototype$__get__Group": {
           url: urlBase + "/Servers/:id/Group",
-          method: "GET",
-        },
-
-        // INTERNAL. Use Server.Addresses.findById() instead.
-        "prototype$__findById__Addresses": {
-          url: urlBase + "/Servers/:id/Addresses/:fk",
-          method: "GET",
-        },
-
-        // INTERNAL. Use Server.Addresses.destroyById() instead.
-        "prototype$__destroyById__Addresses": {
-          url: urlBase + "/Servers/:id/Addresses/:fk",
-          method: "DELETE",
-        },
-
-        // INTERNAL. Use Server.Addresses.updateById() instead.
-        "prototype$__updateById__Addresses": {
-          url: urlBase + "/Servers/:id/Addresses/:fk",
-          method: "PUT",
-        },
-
-        // INTERNAL. Use Server.Addresses() instead.
-        "prototype$__get__Addresses": {
-          url: urlBase + "/Servers/:id/Addresses",
-          method: "GET",
-          isArray: true,
-        },
-
-        // INTERNAL. Use Server.Addresses.create() instead.
-        "prototype$__create__Addresses": {
-          url: urlBase + "/Servers/:id/Addresses",
-          method: "POST",
-        },
-
-        // INTERNAL. Use Server.Addresses.destroyAll() instead.
-        "prototype$__delete__Addresses": {
-          url: urlBase + "/Servers/:id/Addresses",
-          method: "DELETE",
-        },
-
-        // INTERNAL. Use Server.Addresses.count() instead.
-        "prototype$__count__Addresses": {
-          url: urlBase + "/Servers/:id/Addresses/count",
           method: "GET",
         },
 
@@ -1288,12 +1558,6 @@ module.factory(
           url: urlBase + "/Groups/:id/Servers/count",
           method: "GET",
         },
-
-        // INTERNAL. Use Address.Server() instead.
-        "::get::Address::Server": {
-          url: urlBase + "/Addresses/:id/Server",
-          method: "GET",
-        },
       }
     );
 
@@ -1456,270 +1720,6 @@ module.factory(
           var action = TargetResource["::get::Server::Group"];
           return action.apply(R, arguments);
         };
-    /**
-     * @ngdoc object
-     * @name lbServices.Server.Addresses
-     * @object
-     * @description
-     *
-     * The object `Server.Addresses` groups methods
-     * manipulating `Address` instances related to `Server`.
-     *
-     * Use {@link lbServices.Server#Addresses} to query
-     * all related instances.
-     */
-
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Server#Addresses
-         * @methodOf lbServices.Server
-         *
-         * @description
-         *
-         * Queries Addresses of Server.
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - PersistedModel id
-         *
-         *  - `filter` – `{object=}` - 
-         *
-         * @param {Function(Array.<Object>, Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {Function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @return {Array.<Object>} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * <em>
-         * (The remote method definition does not provide any description.
-         * This usually means the response is a `Address` object.)
-         * </em>
-         */
-        R.Addresses = function() {
-          var TargetResource = $injector.get("Address");
-          var action = TargetResource["::get::Server::Addresses"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Server.Addresses#count
-         * @methodOf lbServices.Server.Addresses
-         *
-         * @description
-         *
-         * Counts Addresses of Server.
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - PersistedModel id
-         *
-         *  - `where` – `{object=}` - Criteria to match model instances
-         *
-         * @param {Function(Object, Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {Function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @return {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * Data properties:
-         *
-         *  - `count` – `{number=}` - 
-         */
-        R.Addresses.count = function() {
-          var TargetResource = $injector.get("Address");
-          var action = TargetResource["::count::Server::Addresses"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Server.Addresses#create
-         * @methodOf lbServices.Server.Addresses
-         *
-         * @description
-         *
-         * Creates a new instance in Addresses of this model.
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - PersistedModel id
-         *
-         * @param {Object} postData Request data.
-         *
-         * This method expects a subset of model properties as request parameters.
-         *
-         * @param {Function(Object, Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {Function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @return {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * <em>
-         * (The remote method definition does not provide any description.
-         * This usually means the response is a `Address` object.)
-         * </em>
-         */
-        R.Addresses.create = function() {
-          var TargetResource = $injector.get("Address");
-          var action = TargetResource["::create::Server::Addresses"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Server.Addresses#destroyAll
-         * @methodOf lbServices.Server.Addresses
-         *
-         * @description
-         *
-         * Deletes all Addresses of this model.
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - PersistedModel id
-         *
-         * @param {Function(Object, Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {Function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @return {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * This method returns no data.
-         */
-        R.Addresses.destroyAll = function() {
-          var TargetResource = $injector.get("Address");
-          var action = TargetResource["::delete::Server::Addresses"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Server.Addresses#destroyById
-         * @methodOf lbServices.Server.Addresses
-         *
-         * @description
-         *
-         * Delete a related item by id for Addresses
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - PersistedModel id
-         *
-         *  - `fk` – `{*}` - Foreign key for Addresses
-         *
-         * @param {Function(Object, Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {Function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @return {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * Data properties:
-         *
-         *  - `` – `{undefined=}` - 
-         */
-        R.Addresses.destroyById = function() {
-          var TargetResource = $injector.get("Address");
-          var action = TargetResource["::destroyById::Server::Addresses"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Server.Addresses#findById
-         * @methodOf lbServices.Server.Addresses
-         *
-         * @description
-         *
-         * Find a related item by id for Addresses
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - PersistedModel id
-         *
-         *  - `fk` – `{*}` - Foreign key for Addresses
-         *
-         * @param {Function(Object, Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {Function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @return {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * <em>
-         * (The remote method definition does not provide any description.
-         * This usually means the response is a `Address` object.)
-         * </em>
-         */
-        R.Addresses.findById = function() {
-          var TargetResource = $injector.get("Address");
-          var action = TargetResource["::findById::Server::Addresses"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Server.Addresses#updateById
-         * @methodOf lbServices.Server.Addresses
-         *
-         * @description
-         *
-         * Update a related item by id for Addresses
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - PersistedModel id
-         *
-         *  - `fk` – `{*}` - Foreign key for Addresses
-         *
-         * @param {Object} postData Request data.
-         *
-         * This method expects a subset of model properties as request parameters.
-         *
-         * @param {Function(Object, Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {Function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @return {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * <em>
-         * (The remote method definition does not provide any description.
-         * This usually means the response is a `Address` object.)
-         * </em>
-         */
-        R.Addresses.updateById = function() {
-          var TargetResource = $injector.get("Address");
-          var action = TargetResource["::updateById::Server::Addresses"];
-          return action.apply(R, arguments);
-        };
 
     /**
     * @ngdoc property
@@ -1758,9 +1758,9 @@ module.factory(
       { 'id': '@id' },
       {
 
-        // INTERNAL. Use Address.Server() instead.
-        "prototype$__get__Server": {
-          url: urlBase + "/Addresses/:id/Server",
+        // INTERNAL. Use Address.Group() instead.
+        "prototype$__get__Group": {
+          url: urlBase + "/Addresses/:id/Group",
           method: "GET",
         },
 
@@ -2105,46 +2105,46 @@ module.factory(
           method: "PUT",
         },
 
-        // INTERNAL. Use Server.Addresses.findById() instead.
-        "::findById::Server::Addresses": {
-          url: urlBase + "/Servers/:id/Addresses/:fk",
+        // INTERNAL. Use Group.Address.findById() instead.
+        "::findById::Group::Address": {
+          url: urlBase + "/Groups/:id/Address/:fk",
           method: "GET",
         },
 
-        // INTERNAL. Use Server.Addresses.destroyById() instead.
-        "::destroyById::Server::Addresses": {
-          url: urlBase + "/Servers/:id/Addresses/:fk",
+        // INTERNAL. Use Group.Address.destroyById() instead.
+        "::destroyById::Group::Address": {
+          url: urlBase + "/Groups/:id/Address/:fk",
           method: "DELETE",
         },
 
-        // INTERNAL. Use Server.Addresses.updateById() instead.
-        "::updateById::Server::Addresses": {
-          url: urlBase + "/Servers/:id/Addresses/:fk",
+        // INTERNAL. Use Group.Address.updateById() instead.
+        "::updateById::Group::Address": {
+          url: urlBase + "/Groups/:id/Address/:fk",
           method: "PUT",
         },
 
-        // INTERNAL. Use Server.Addresses() instead.
-        "::get::Server::Addresses": {
-          url: urlBase + "/Servers/:id/Addresses",
+        // INTERNAL. Use Group.Address() instead.
+        "::get::Group::Address": {
+          url: urlBase + "/Groups/:id/Address",
           method: "GET",
           isArray: true,
         },
 
-        // INTERNAL. Use Server.Addresses.create() instead.
-        "::create::Server::Addresses": {
-          url: urlBase + "/Servers/:id/Addresses",
+        // INTERNAL. Use Group.Address.create() instead.
+        "::create::Group::Address": {
+          url: urlBase + "/Groups/:id/Address",
           method: "POST",
         },
 
-        // INTERNAL. Use Server.Addresses.destroyAll() instead.
-        "::delete::Server::Addresses": {
-          url: urlBase + "/Servers/:id/Addresses",
+        // INTERNAL. Use Group.Address.destroyAll() instead.
+        "::delete::Group::Address": {
+          url: urlBase + "/Groups/:id/Address",
           method: "DELETE",
         },
 
-        // INTERNAL. Use Server.Addresses.count() instead.
-        "::count::Server::Addresses": {
-          url: urlBase + "/Servers/:id/Addresses/count",
+        // INTERNAL. Use Group.Address.count() instead.
+        "::count::Group::Address": {
+          url: urlBase + "/Groups/:id/Address/count",
           method: "GET",
         },
       }
@@ -2276,12 +2276,12 @@ module.factory(
 
         /**
          * @ngdoc method
-         * @name lbServices.Address#Server
+         * @name lbServices.Address#Group
          * @methodOf lbServices.Address
          *
          * @description
          *
-         * Fetches belongsTo relation Server
+         * Fetches belongsTo relation Group
          *
          * @param {Object=} parameters Request parameters.
          *
@@ -2301,12 +2301,12 @@ module.factory(
          *
          * <em>
          * (The remote method definition does not provide any description.
-         * This usually means the response is a `Server` object.)
+         * This usually means the response is a `Group` object.)
          * </em>
          */
-        R.Server = function() {
-          var TargetResource = $injector.get("Server");
-          var action = TargetResource["::get::Address::Server"];
+        R.Group = function() {
+          var TargetResource = $injector.get("Group");
+          var action = TargetResource["::get::Address::Group"];
           return action.apply(R, arguments);
         };
 

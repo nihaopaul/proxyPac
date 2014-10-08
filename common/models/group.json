@@ -16,6 +16,10 @@
     "Servers": {
       "model": "Server",
       "type": "hasMany"
+    },
+    "Address": {
+      "model": "Address",
+      "type": "hasMany"
     }
   },
   "acls": [],

@@ -1,9 +1,10 @@
+<div>
+  <div>Number of servers in our db: <span>{{servers.length}}</span></div>
+  <ul ui-sortable="sortableOptions" ng-model="servers">
+    <li ng-repeat="server in servers | orderBy:'order':true "><a ng-href="/#/group/{{server.groupId}}" >{{server.type}}://{{server.address}}:{{server.port}} </a></li>
+  </ul>
 
-<div>Number of servers in our db: <span>{{servers.length}}</span></div>
-<ul>
-  <li ng-repeat="server in servers"><a ng-href="/#/group/{{server.groupId}}/server/{{server.id}}" >{{server.type}}://{{server.address}}:{{server.port}} </a></li>
-</ul>
-
-<pre>
-{{servers}}
-</pre>
+  <pre>
+  {{servers}}
+  </pre>
+</div>

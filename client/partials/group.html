@@ -1,0 +1,6 @@
+<div ng-controller="Group">
+  <div ng-if="unedit" ng-click="changeToInput()">{{group.name}}</div>
+  <div ng-if="!unedit"><input ng-blur="changeToInput()" ng-model="group.name" value="{{group.name}}" /></div>
+</div>
+<div ng-include src='"partials/addresses.html"' ng-controller="Addresses"></div>
+<div ng-include src='"partials/servers.html"' ng-controller="Servers"></div>

@@ -21,10 +21,6 @@
   },
   "validations": [],
   "relations": {
-    "Addresses": {
-      "model": "Address",
-      "type": "hasMany"
-    },
     "Group": {
       "model": "Group",
       "type": "belongsTo"

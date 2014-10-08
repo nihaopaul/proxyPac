@@ -9,8 +9,8 @@
   },
   "validations": [],
   "relations": {
-      "Server": {
-        "model": "Server",
+      "Group": {
+        "model": "Group",
         "type": "belongsTo"
       }
     },

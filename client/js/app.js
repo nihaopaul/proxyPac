@@ -8,11 +8,12 @@ angular.module('ProxyPAC', [
   'ProxyPAC.services',
   'lbServices',
   'ProxyPAC.directives',
-  'ProxyPAC.controllers'
+  'ProxyPAC.controllers',
+  'ui.sortable'
 ]).
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/groups', {templateUrl: 'partials/groups.html', controller: 'Groups'});
-  $routeProvider.when('/group/:gid', {templateUrl: 'partials/servers.html', controller: 'Servers'});
-  $routeProvider.when('/group/:gid/server/:sid', {templateUrl: 'partials/addresses.html', controller: 'Addresses'});
-  $routeProvider.otherwise({redirectTo: '/groups'});
+  $routeProvider.when('/', {templateUrl: 'partials/groups.html', controller: 'Groups'});
+  $routeProvider.when('/group/:id', {templateUrl: 'partials/group.html', controller: 'Group'});
+  $routeProvider.when('/group/:id', {templateUrl: 'partials/group.html', controller: 'Group'});
+  $routeProvider.otherwise({redirectTo: '/'});
 }]);
