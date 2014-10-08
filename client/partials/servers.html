@@ -1,7 +1,20 @@
 <div>
   <div>Number of servers in our db: <span>{{servers.length}}</span></div>
   <ul ui-sortable="sortableOptions" ng-model="servers">
-    <li ng-repeat="server in servers | orderBy:'order':true "><a ng-href="/#/group/{{server.groupId}}" >{{server.type}}://{{server.address}}:{{server.port}} </a></li>
+    <li ng-repeat="server in servers | orderBy:'order':true " >
+      <a ng-href="/#/group/{{server.groupId}}" ng-click="editable()" ng-model="server" ng-if="editing !== server.id"  >{{server.type}}://{{server.address}}:{{server.port}} </a>
+      <a ng-href="/#/group/{{server.groupId}}"  ng-model="server" ng-if="editing == server.id">
+        <select ng-model="server.type" ng-selected="server.type">
+          <option name="PROXY">PROXY</option>
+          <option name="SOCKS">SOCKS</option>
+          <option name="SOCKS5">SOCKS5</option>
+          <option name="DIRECT">DIRECT</option>
+        </select>
+        <input ng-model="server.address" />
+        <input ng-model="server.port" type="number" />
+        <button ng-click="save()" class="btn btn-large" />
+      </a>
+    </li>
   </ul>
 
   <pre>

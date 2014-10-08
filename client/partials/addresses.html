@@ -1,7 +1,7 @@
 <div>
   <div>Number of Addresses in our db: <span>{{addresses.length}}</span></div>
   <ul>
-    <li ng-repeat="address in addresses" contenteditable="true">{{address.url}}</a></li>
+    <li ng-repeat="address in addresses" editable-text="address.url">{{address.url}}</a></li>
   </ul>
 
   <pre>

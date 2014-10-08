@@ -1,7 +1,9 @@
 <div>
   <div>Number of groups in our db: <span>{{groups.length}}</span></div>
   <ul ui-sortable="sortableOptions" ng-model="groups">
-    <li ng-repeat="group in groups | orderBy:'order':true " ><a ng-href="/#/group/{{group.id}}" >{{group.name}}</a> </li>
+    <li ng-repeat="group in groups | orderBy:'order':true " >
+      <a ng-href="/#/group/{{group.id}}" >{{group.name}}</a> 
+    </li>
   </ul>
 
   <pre>
