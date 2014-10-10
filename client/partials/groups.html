@@ -3,6 +3,10 @@
   <ul ui-sortable="sortableOptions" ng-model="groups">
     <li ng-repeat="group in groups | orderBy:'order':true " >
       <a ng-href="/#/group/{{group.id}}" >{{group.name}}</a> 
+      <button ng-click="remove()" class="btn btn-warning"><span class="glyphicon glyphicon-remove"></span></button>
+    </li>
+    <li>
+      <input ng-model="newGroup.name" ng-blur="addNewGroup()" />
     </li>
   </ul>
 

@@ -15,6 +15,20 @@ angular.module('ProxyPAC.controllers', [])
       },
       axis: 'y'
     };
+    $scope.addNewGroup = function() {
+      var group = new Group({name: this.newGroup.name, order: ($scope.groups.length+1)});
+      group.$save();
+      $scope.groups.push(group);
+      this.newGroup.name = null;
+    };
+    $scope.remove = function() {
+      var id = this.$index;
+      this.group.$remove(function() {
+        $scope.groups = Group.find();
+      });
+      
+    };
+
   }])
   .controller('Servers', ['$scope', 'Group', '$routeParams', function($scope, Group, $routeParams) {
     $scope.servers = Group.Servers({id: $routeParams.id});
@@ -53,6 +67,11 @@ angular.module('ProxyPAC.controllers', [])
         });
       }
     }, true);
+    $scope.addNewAddress = function() {
+      
+      var address = new Group.Address({groupId: 0, url: ....});
+      ---this is where i broke it---
+    }
   }])
   .controller('Group', ['$scope', 'Group', '$routeParams', function($scope, Group, $routeParams) {
     $scope.group = Group.get({id: $routeParams.id});
