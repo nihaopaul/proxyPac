@@ -7,16 +7,13 @@ angular.module('ProxyPAC.controllers', [])
     $scope.groups = Group.find();
     $scope.sortableOptions = {
       stop: function(e, ui) { 
-        // $scope.groups.forEach(function(e, i) {
-        //    e.order = i;
-        //    e.$save();
-        // });
+
 
         ui.item.scope().groups.forEach(function(item, i){
           item.order = i;
           item.$save();
         })
-        // $scope.editing = null;
+       
 
       },
       axis: 'y'
