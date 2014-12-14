@@ -1,14 +1,16 @@
 <div>
   <div>Number of groups in our db: <span>{{groups.length}}</span></div>
   <ul ui-sortable="sortableOptions" ng-model="groups">
-    <li ng-repeat="group in groups | orderBy:'order':true " >
+    <li ng-repeat="group in groups | orderBy:'order' " >
       <a ng-href="/#/group/{{group.id}}" >{{group.name}}</a> 
       <button ng-click="remove()" class="btn btn-warning"><span class="glyphicon glyphicon-remove"></span></button>
     </li>
-    <li>
-      <input ng-model="newGroup.name" ng-blur="addNewGroup()" />
-    </li>
   </ul>
+
+  <div>
+    <input ng-model="newGroup.name" ng-enter="addNewGroup()" />
+  </div>
+
 
   <pre>
   {{ groups | orderBy:'order':true }}

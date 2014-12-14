@@ -4,7 +4,7 @@
   "main": "server/server.js",
   "scripts": {
     "pretest": "jshint .",
-    "start": "nodemon server/server.js"
+    "start": "nodemon -w server server/server.js"
   },
   "dependencies": {
     "compression": "^1.0.3",

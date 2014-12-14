@@ -2,10 +2,12 @@
   <div>Number of Addresses in our db: <span>{{addresses.length}}</span></div>
   <ul>
     <li ng-repeat="address in addresses" editable-text="address.url">{{address.url}}</a></li>
-    <li>
-      <input ng-model="newAddress.url" ng-blur="addNewAddress()" />
-    </li>
+
   </ul>
+  <div>
+    <input ng-model="newAddress.url" ng-enter="addNewAddress()" />
+  </div>
+
 
   <pre>
   {{addresses}}

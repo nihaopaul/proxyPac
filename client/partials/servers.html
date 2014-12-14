@@ -1,22 +1,39 @@
 <div>
   <div>Number of servers in our db: <span>{{servers.length}}</span></div>
   <ul ui-sortable="sortableOptions" ng-model="servers">
-    <li ng-repeat="server in servers | orderBy:'order':true " >
-      <a ng-href="/#/group/{{server.groupId}}" ng-click="editable()" ng-model="server" ng-if="editing !== server.id"  >{{server.type}}://{{server.address}}:{{server.port}} </a>
-      <a ng-href="/#/group/{{server.groupId}}"  ng-model="server" ng-if="editing == server.id">
+    <li ng-repeat="server in servers | orderBy : 'order'" >
+      <a ng-href="/#/group/{{server.groupId}}" ng-click="editable()" ng-model="server" ng-if="editing !== server.id"  >{{server.type}}<span ng-if="server.address && server.port">://{{server.address}}:{{server.port}}</span> </a>
+      <div ng-model="server" ng-if="editing == server.id">
         <select ng-model="server.type" ng-selected="server.type">
+         <option name="DELETE">DELETE</option>
           <option name="PROXY">PROXY</option>
           <option name="SOCKS">SOCKS</option>
           <option name="SOCKS5">SOCKS5</option>
           <option name="DIRECT">DIRECT</option>
         </select>
-        <input ng-model="server.address" />
-        <input ng-model="server.port" type="number" />
+        <input ng-model="server.address" ng-if="server.type != 'DIRECT'" />
+        <input ng-model="server.port" ng-if="server.type != 'DIRECT'" type="number" />
 
         <button ng-click="save()" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span></button>
-      </a>
+      </div>
     </li>
   </ul>
+  
+  <div ng-if="editing == server.id">
+    <div  ng-model="newServer" >
+      <select ng-model="newServer.type" ng-selected="newServer.type">
+        <option name="PROXY">PROXY</option>
+        <option name="SOCKS">SOCKS</option>
+        <option name="SOCKS5">SOCKS5</option>
+        <option name="DIRECT">DIRECT</option>
+      </select>
+      <input ng-model="newServer.address" ng-if="newServer.type != 'DIRECT'" />
+      <input ng-model="newServer.port" type="number" ng-if="newServer.type != 'DIRECT'" />
+
+      <button ng-click="new()" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span></button>
+    </div>
+  </div>
+
 
   <pre>
   {{servers}}

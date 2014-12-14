@@ -6,17 +6,23 @@ angular.module('ProxyPAC.controllers', [])
   .controller('Groups', ['$scope', 'Group', '$routeParams', function($scope, Group, $routeParams) {
     $scope.groups = Group.find();
     $scope.sortableOptions = {
-      update: function(e, ui) { 
-        $scope.groups.forEach(function(e, i) {
-           e.order = i;
-           e.$save();
-        });
+      stop: function(e, ui) { 
+        // $scope.groups.forEach(function(e, i) {
+        //    e.order = i;
+        //    e.$save();
+        // });
+
+        ui.item.scope().groups.forEach(function(item, i){
+          item.order = i;
+          item.$save();
+        })
+        // $scope.editing = null;
 
       },
       axis: 'y'
     };
     $scope.addNewGroup = function() {
-      var group = new Group({name: this.newGroup.name, order: ($scope.groups.length+1)});
+      var group = new Group({name: this.newGroup.name, order: ($scope.groups.length)});
       group.$save();
       $scope.groups.push(group);
       this.newGroup.name = null;
@@ -30,47 +36,127 @@ angular.module('ProxyPAC.controllers', [])
     };
 
   }])
-  .controller('Servers', ['$scope', 'Group', '$routeParams', function($scope, Group, $routeParams) {
-    $scope.servers = Group.Servers({id: $routeParams.id});
+  .controller('Servers', ['$scope', 'Group', 'Server', '$routeParams', function($scope, Group, Server, $routeParams) {
+
+    $scope.servers = [];
+
+    function getServers() {
+      Group
+      .Servers({id: $routeParams.id})
+      .$promise
+      .then(function(results) {
+        $scope.servers = results;
+      });
+    }
+    getServers();
+    
     $scope.editing = null;
     $scope.sortableOptions = {
-      update: function(e, ui) { 
-        $scope.servers.forEach(function(item, i) {
-            item.order = i;
-            item.$save();
-        });
+      stop: function(e, ui) { 
+
+        ui.item.scope().servers.forEach(function(item, i){
+          item.order = i;
+          item.$save();
+        })
+        $scope.editing = null;
       },
       axis: 'y'
     };
     $scope.save = function() {
-      
-       this.server.$save(function() {
-         $scope.editing  = null;
-       });
+
+      switch(this.server.type) {
+        case 'DELETE':
+          Server
+          .deleteById(this.server)
+          .$promise
+          .then(function() {
+            $scope.editing  = null;
+            getServers();
+          });
+        break;
+        case 'DIRECT':
+          console.log(this.server);
+          this.server.address = null;
+          this.server.port = null;
+          this.server.$save(function() {
+            $scope.editing  = null;
+          });
+
+        break;
+        default:
+          this.server.$save(function() {
+            $scope.editing  = null;
+          });
+      }
+
+
        
     };
     $scope.editable = function() {
-
       var idx = this.server.id;
       $scope.editing = idx;
-      
+    };
+
+    $scope.newServer = { };
+
+    $scope.new = function() {
+      $scope.newServer.order =  $scope.servers.length;
+      $scope.newServer.groupId = $routeParams.id;
+
+      Server
+      .create($scope.newServer)
+      .$promise
+      .then(function(address) {
+        $scope.newServer = {};
+        getServers();
+      });
+
+
+
+
     };
 
   }])
-  .controller('Addresses', ['$scope', 'Group', '$routeParams', function($scope, Group, $routeParams) {
-    $scope.addresses = Group.Address({id: $routeParams.id});
+  .controller('Addresses', ['$scope', 'Group', 'Address', '$routeParams', function($scope, Group, Address, $routeParams) {
+    $scope.addresses = [];
+
+    function getAddresses() {
+      Group
+      .Address({id: $routeParams.id})
+      .$promise
+      .then(function(results) {
+        $scope.addresses = results;
+      });
+    }
+    getAddresses();
+
     $scope.$watch('addresses', function(newVal, oldVal) {
-      if (newVal !== oldVal && oldVal != undefined ) {
-        /* must be a better way to call the function */
-        $scope.addresses.forEach(function(item, i) {
-          item.$save();
+      //keep it clean, check for empties
+      $scope.addresses.forEach(function(item, i) {  
+
+        if (!item.url) {
+          Address
+          .deleteById(item)
+          .$promise
+          .then(function() {
+            getAddresses();
+          });
+        }
+      });
+      
+    }, true);
+
+    $scope.newAddress = { };
+    $scope.addNewAddress = function() {
+      if ($scope.newAddress.url) {
+        Address
+        .create({"url" :$scope.newAddress.url, "groupId": $routeParams.id})
+        .$promise
+        .then(function(address) {
+          $scope.newAddress = {};
+          getAddresses();
         });
       }
-    }, true);
-    $scope.addNewAddress = function() {
-      
-      var address = new Group.Address({groupId: 0, url: ....});
-      ---this is where i broke it---
     }
   }])
   .controller('Group', ['$scope', 'Group', '$routeParams', function($scope, Group, $routeParams) {
