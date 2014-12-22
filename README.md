@@ -13,7 +13,7 @@
 
 # Install
 
-* ./Makefile
+* make
 
 # TODO
 
