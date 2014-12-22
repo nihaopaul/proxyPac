@@ -16,7 +16,7 @@
     "request": "^2.51.0",
     "serve-favicon": "^2.0.1"
   },
-  "optionalDependencies": {
+  "devDependencies": {
     "loopback-explorer": "^1.1.0"
   }
 }
