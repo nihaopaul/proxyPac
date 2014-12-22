@@ -18,4 +18,4 @@
 # TODO
 
 * Different proxyPac based on IP ADDRESS/IP RANGE 
-
+* better interface.. one that makes more sense than functional

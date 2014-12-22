@@ -1,0 +1,26 @@
+{
+  "ids": {
+    "User": 1,
+    "AccessToken": 1,
+    "ACL": 1,
+    "RoleMapping": 1,
+    "Role": 1,
+    "Group": 2,
+    "Server": 2,
+    "Address": 1
+  },
+  "models": {
+    "User": {},
+    "AccessToken": {},
+    "ACL": {},
+    "RoleMapping": {},
+    "Role": {},
+    "Group": {
+      "1": "{\"name\":\"Default\",\"order\":0,\"id\":1}"
+    },
+    "Server": {
+      "1": "{\"type\":\"DIRECT\",\"order\":0,\"id\":1,\"groupId\":1}"
+    },
+    "Address": {}
+  }
+}
