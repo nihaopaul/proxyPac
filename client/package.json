@@ -1,6 +1,6 @@
 {
   "name": "Frontend",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "the frontend for ProxyPac",
   "main": "Gruntfile.js",
   "scripts": {
