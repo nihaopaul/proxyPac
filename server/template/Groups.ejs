@@ -1,0 +1,6 @@
+return "<% group.servers.forEach(function(server) { -%>
+<% if(!server.address || !server.port) { -%>
+<%- server.type -%>; 
+<% } else { -%>
+<%- server.type -%> <%- server.address -%>:<%- server.port -%>; <% } -%>
+<% }) -%>"

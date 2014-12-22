@@ -1,0 +1,5 @@
+return "<% if(!group.servers[0].address || !group.servers[0].port) { -%>
+<%- group.servers[0].type -%>; 
+<% } else { -%>
+<%- group.servers[0].type -%> <%- group.servers[0].address -%>:<%- group.servers[0].port -%>; 
+<% } -%>"
