@@ -123,10 +123,18 @@ requestor.prototype = {
   }, 
   watchDBFile: function() {
     var self = this;
-    fs.watch(this.dbfile, function (event, filename) {
-      clearTimeout(self.timeOutWatch); 
-      self.timeOutWatch = setTimeout(function() { self.build(); }, 500);
+
+    fs.exists(this.dbfile, function (exists) {
+      if (exists) {
+        fs.watch(this.dbfile, function (event, filename) {
+          clearTimeout(self.timeOutWatch); 
+          self.timeOutWatch = setTimeout(function() { self.build(); }, 500);
+        });
+      } else {
+        console.log('did not setup watch on the database file, configure first via the web interface and then restart node');
+      }
     });
+
   },
   rebuild: function() {
     console.log('rebuilding');

@@ -11,6 +11,9 @@
 * Grouping
 * Global Whitelist or Global Blacklist
 
+# Install
+
+* ./Makefile
 
 # TODO
 
