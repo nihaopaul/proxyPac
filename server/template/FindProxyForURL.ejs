@@ -20,4 +20,7 @@ function FindProxyForURL(url, host) {
     <% include finalGroup %>
   <% } %>
 <%  }) -%>  
+  <% if (!groups.length) { %>
+    return "DIRECT; "
+  <% } %>
 }
