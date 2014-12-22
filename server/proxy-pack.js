@@ -14,7 +14,7 @@ var Groups = function(json) {
   this.id = json.id;
 
 
-  //functions to pull aggressivly from the server, should cache this.
+  //functions to pull aggressivly from the server, should cache this, nah its fine.
   this.hostList(function(value) {
     self.hosts = value;
   });
