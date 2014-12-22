@@ -1,5 +1,4 @@
-#!/bin/sh
-npm install
-cd client/
-bower install
+all:
+	npm install
+	cd client/; bower install
 
