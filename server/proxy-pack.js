@@ -126,7 +126,7 @@ requestor.prototype = {
 
     fs.exists(this.dbfile, function (exists) {
       if (exists) {
-        fs.watch(this.dbfile, function (event, filename) {
+        fs.watch(self.dbfile, function (event, filename) {
           clearTimeout(self.timeOutWatch); 
           self.timeOutWatch = setTimeout(function() { self.build(); }, 500);
         });
