@@ -82,8 +82,9 @@ var requestor = function() {
 
   this.proxyPac = {
     groups: [],
+    filename: './server/template/FindProxyForURL.ejs'
   };
-  this.templateFile = './server/template/FindProxyForURL.ejs';
+  
   this.dbfile = './persistentDB/database.json';
 
   this.ProxyPacFile = '';
@@ -136,7 +137,7 @@ requestor.prototype = {
   },
   watchTemplate: function() {
     var self = this;
-    fs.watch(this.templateFile, function (event, filename) {
+    fs.watch(this.proxyPac.filename, function (event, filename) {
 
       clearTimeout(self.templateWatch); 
       self.templateWatch = setTimeout(function() { self.template(); }, 500);
@@ -144,7 +145,7 @@ requestor.prototype = {
   },
   template: function() {
     var self = this;
-    fs.readFile(this.templateFile, function (err, data) {
+    fs.readFile(this.proxyPac.filename, function (err, data) {
       if (err) throw err;
       console.log('Loading Template.');
       self.ProxyPacFile = data.toString();
