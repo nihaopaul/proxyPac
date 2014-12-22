@@ -1,0 +1,26 @@
+function FindProxyForURL(url, host) {
+  var hosts = [];
+
+  <% groups.forEach(function(group) { %>
+    <% if (group.servers.length >1 && group.servers[0].type != 'DIRECT') { %>
+
+      hosts = [  
+      <% group.hosts.forEach(function(host) { %>
+        '<%- host.url -%>',
+      <% }) %>
+      ];
+      for (var i = 0; i < hosts.length; i++) {
+        var name = hosts[i];
+
+        if (host == name || shExpMatch(host, '*.' + name)) {
+          return "<% group.servers.forEach(function(server) { -%><% if(server.type == 'DIRECT') { -%><%- server.type -%>; <% } else { -%><%- server.type -%> <%- server.address -%>:<%- server.port -%>; <% } -%><% }) -%>"
+
+        }
+      }; 
+    <% } else { %>
+      return "<% if(group.servers[0].type == 'DIRECT') { -%><%- group.servers[0].type -%>; <% } else { -%><%- group.servers[0].type -%> <%- group.servers[0].address -%>:<%- group.servers[0].port -%>; <% } -%>"
+    <% } %>
+  <%  }) -%>
+
+  
+}
