@@ -1,8 +1,22 @@
 var request = require('request');
-var util = require('util')
-var inspect = util.inspect
+var util = require('util');
+var inspect = util.inspect;
 var ejs = require('ejs');
 var fs = require('fs');
+
+
+
+
+var Servers = function(json) {
+  this.type = json.type;
+  this.address = json.address || null;
+  this.port = json.port || null;
+  this.order = json.order || 0;
+};
+
+var Addresses = function(json) {
+  this.url = json.url;
+};
 
 
 
@@ -14,7 +28,7 @@ var Groups = function(json) {
   this.id = json.id;
 
 
-  //functions to pull aggressivly from the server, should cache this, nah its fine.
+
   this.hostList(function(value) {
     self.hosts = value;
   });
@@ -24,7 +38,7 @@ var Groups = function(json) {
 
   });
 
-}
+};
 
 Groups.prototype = {
   serverList: function(cb) {
@@ -60,19 +74,9 @@ Groups.prototype = {
     });
 
   },
-}
+};
 
 
-var Servers = function(json) {
-  this.type = json.type;
-  this.address = json.address || null;
-  this.port = json.port || null;
-  this.order = json.order || 0;
-}
-
-var Addresses = function(json) {
-  this.url = json.url;
-}
 
 
 
@@ -94,30 +98,33 @@ var requestor = function() {
   this.template();
   this.build();
 
-}
+};
 
 requestor.prototype = {
   build: function() {
 
     var self = this;
-    request({url: 'http://127.0.0.1:3000/api/Groups'}, function (err, response, body) {
+    request({url: 'http://127.0.0.1:3000/api/Groups'}, 
+      function (err, response, body) {
 
-      if (err) {
-        console.log("could not connect");
-        self.rebuild();
-        return false;
-      };
-      self.proxyPac.groups = [];
+        if (err) {
+          console.log('could not connect');
+          self.rebuild();
+          return false;
+        }
 
-      JSON.parse(body).forEach(function(item, i) {
-        self.proxyPac.groups.push(new Groups(item));
-      });
-      //sort based on the preconfigured order
-      self.proxyPac.groups.sort(function(a,b) {
-        return a.order - b.order;
-      });
+        self.proxyPac.groups = [];
 
-    });
+        JSON.parse(body).forEach(function(item, i) {
+          self.proxyPac.groups.push(new Groups(item));
+        });
+        //sort based on the preconfigured order
+        self.proxyPac.groups.sort(function(a,b) {
+          return a.order - b.order;
+        });
+
+      }
+    );
     self.watchDBFile();
 
   }, 
@@ -131,7 +138,8 @@ requestor.prototype = {
           self.timeOutWatch = setTimeout(function() { self.build(); }, 500);
         });
       } else {
-        console.log('did not setup watch on the database file, configure first via the web interface and then restart node');
+        console.log('did not setup watch on the database file, ' + 
+          'configure first via the web interface and then restart node');
       }
     });
 
@@ -181,12 +189,7 @@ module.exports = function() {
         next();
       }
      
-    }
+    };
     
 };
-
-
-
-
-
 
