@@ -180,16 +180,14 @@ var r = new requestor();
 
 module.exports = function() {
 
-    return function(req, res, next) {
-      if (ProxyFiles.indexOf(req.url) > -1) {
-        res.header('Content-Type', 'application/x-ns-proxy-autoconfig');
-        res.send(ejs.render(r.ProxyPacFile, r.proxyPac));
-
-      } else {
-        next();
-      }
-     
-    };
+  return function(req, res, next) {
+    if (ProxyFiles.indexOf(req.url) > -1) {
+      res.header('Content-Type', 'application/x-ns-proxy-autoconfig');
+      res.send(ejs.render(r.ProxyPacFile, r.proxyPac));
+    } else {
+      next();
+    }
+  };
     
 };
 
