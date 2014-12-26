@@ -3,7 +3,7 @@
 
 * Built with loopback for Storage and API's, proxypac is the proxy serving tool that updates immediatly internally.
 * point computers to use proxy pack here: http://[ip.add.re.ss]:3000/wpad.pac
-* dhcp-flag 252 works.. http://technet.microsoft.com/en-gb/library/bb794881.aspx http://www.dd-wrt.com/phpBB2/viewtopic.php?p=733522 
+* dhcp-flag 252 works.. http://technet.microsoft.com/en-gb/library/bb794881.aspx http://www.dd-wrt.com/phpBB2/viewtopic.php?p=733522 http://findproxyforurl.com/official-toolset/
 
 # Features
 
