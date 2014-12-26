@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('ProxyPAC.controllers', [])
-  .controller('Groups', ['$scope', 'Group', '$routeParams', function($scope, Group, $routeParams) {
+  .controller('Groups', ['$scope', 'Group', '$routeParams', '$location', function($scope, Group, $routeParams, $location) {
     $scope.groups = Group.find();
     $scope.sortableOptions = {
       stop: function(e, ui) { 
@@ -18,6 +18,11 @@ angular.module('ProxyPAC.controllers', [])
       },
       axis: 'y'
     };
+    $scope.viewGroup = function() {
+
+      $location.path('/group/' + this.group.id);
+
+    };
     $scope.addNewGroup = function() {
       var group = new Group({name: this.newGroup.name, order: ($scope.groups.length)});
       group.$save();
@@ -29,7 +34,6 @@ angular.module('ProxyPAC.controllers', [])
       this.group.$remove(function() {
         $scope.groups = Group.find();
       });
-      
     };
 
   }])
@@ -126,6 +130,16 @@ angular.module('ProxyPAC.controllers', [])
       });
     }
     getAddresses();
+
+    $scope.remove = function() {
+      // this.address.$remove()
+      Address
+      .deleteById(this.address)
+      .$promise
+      .then(function() {
+        getAddresses();
+      });
+    };
 
     $scope.$watch('addresses', function(newVal, oldVal) {
       //keep it clean, check for empties

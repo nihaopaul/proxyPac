@@ -1,17 +1,19 @@
-<div>
-  <div>Number of Addresses in our db: <span>{{addresses.length}}</span></div>
-  <ul>
-    <li ng-repeat="address in addresses" editable-text="address.url">{{address.url}}</a></li>
 
-  </ul>
-  <div>
-    <input ng-model="newAddress.url" ng-enter="addNewAddress()" />
-  </div>
+<p>The URL will be directed to the proxy servers listed under the group, entering in a url and then selecting direct will not go through the proxy servers.</p>
 
 
-  <pre>
-  {{addresses}}
-  </pre>
-</div>
+<div class="input-group">
+  <input type="text" class="form-control" ng-model="newAddress.url" placeholder="eg. google.com" ng-enter="addNewAddress()">
+  <span class="input-group-btn">
+    <button class="btn btn-default" type="button" ng-click="addNewAddress()"><span class="glyphicon glyphicon-plus"></span></button>
+  </span>
+</div><!-- /input-group -->
 
+<p>&nbsp;</p>
+
+
+<ul class="list-group">
+  <!-- <li class="list-group-item" ng-repeat="address in addresses" ><div editable-text="address.url">{{address.url}}</div></li> -->
+  <li class="list-group-item" ng-repeat="address in addresses" >{{address.url}}<span class="badge select" ng-click="remove()"><span class="glyphicon glyphicon-minus"></span></span> </li>
+</ul>
 
