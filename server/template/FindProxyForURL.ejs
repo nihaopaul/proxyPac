@@ -1,9 +1,8 @@
 function FindProxyForURL(url, host) {
+  <% include exclusions %>
   var hosts = [];
-
 <% groups.forEach(function(group) { %>
-  <% if (group.hosts.length >0 && group.servers[0].type != 'DIRECT') { %>
-
+  <% if (group.hosts.length >0) { %>
     hosts = [  
     <% group.hosts.forEach(function(host) { %>
       '<%- host.url -%>',
@@ -11,7 +10,6 @@ function FindProxyForURL(url, host) {
     ];
     for (var i = 0; i < hosts.length; i++) {
       var name = hosts[i];
-
       if (host == name || shExpMatch(host, '*.' + name)) {
         <% include Groups %>
       }
@@ -21,6 +19,6 @@ function FindProxyForURL(url, host) {
   <% } %>
 <%  }) -%>  
   <% if (!groups.length) { %>
-    return "DIRECT; "
+    return "DIRECT; ";
   <% } %>
 }
