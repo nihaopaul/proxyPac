@@ -7,7 +7,7 @@
     "start": "node server/server.js"
   },
   "dependencies": {
-    "compression": "^1.0.3",
+    "compression": "^1.4.4",
     "ejs": "^1.0.0",
     "errorhandler": "^1.1.1",
     "loopback": "^2.0.0",
