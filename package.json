@@ -1,0 +1,23 @@
+{
+  "name": "proxypac",
+  "version": "0.2.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "~1.0.0",
+    "cookie-parser": "~1.0.1",
+    "debug": "~0.7.4",
+    "ejs": "~0.8.5",
+    "express": "~4.2.0",
+    "express-livereload": "0.0.24",
+    "lokijs": "^1.2.5",
+    "morgan": "~1.0.0",
+    "node-sass-middleware": "^0.7.0",
+    "static-favicon": "~1.0.0"
+  },
+  "devDependencies": {
+    "connect-livereload": "^0.5.3"
+  }
+}
