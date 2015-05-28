@@ -25,11 +25,11 @@ app.set('view engine', 'ejs');
 
 app.use(favicon());
 app.use(sass({
-  src: __dirname + '/sass', //where the sass files are
+  src: __dirname + '/public/sass', //where the sass files are
   dest: __dirname + '/public/css', //where css should go
   debug: true, // obvious
   outputStyle: 'compressed',
-  // prefix:  '/css'
+  prefix:  '/css'
 }));
 
 
@@ -39,7 +39,7 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-livereload(app, config={exts: ['css', 'ejs', 'js'], exclusions: ['public/_lang.ejs', 'public/session-logs/*']});
+livereload(app, config={ watchDir: './', exts: ['scss', 'ejs', 'js'], exclusions: ['database.json']});
 
 app.use('/', routes);
 app.use('/api', api);

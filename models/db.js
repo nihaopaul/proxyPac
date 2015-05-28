@@ -1,47 +1,39 @@
+
 var loki = require("lokijs");
 
-
 var config = require("../config");
-
+var proxyservers = require("./proxyservers");
+var proxyurls = require('./proxyurls');
 
 var DataStore = function() {
+
   var self = this;
+  this.ProxyServers = {};
+  this.ProxyURLS = {};
+  this.options = config.options;
+  this.options.autoloadCallback = function() { self.init(self); }
 
 
-  this.db = new loki(config.database, {
-    autosave: true,
-    autosaveInterval: 60000,
-    autoload: true,
-    autoloadCallback : self.init()
-  });
-
-
-  // this.children = this.db.addCollection('children');
-  // this.children.insert({name:'Sleipnir', legs: 8});
-  // this.init();
+  this.db = new loki(config.database, this.options);
 
 };
 
 DataStore.prototype = {
 
-  init: function() {
-    console.log(this.db);
-    var self = this;
-    // this.db.saveDatabase();
-    try {
-      var coll = self.db.getCollection('test');
-      console.log(coll);
-    } catch (e) {
-      console.log(e);
-      var test = self.db.addCollection('test');
-      test.insert({name: 'paul', age: 32});
-    }
+  init: function(self) {
+    // var self = this;
+    console.log("loaded database", this.db.filename);
+    this.ProxyServers = new proxyservers(self);
+    this.ProxyURLS = new proxyurls(self);
+  }
 
+};
 
-  },
+DataStore.prototype.index = function(req,res) {
+  res.render('api', { title: 'proxyPac' });
 };
 
 
-
 var i = new DataStore();
+
 module.exports = i;

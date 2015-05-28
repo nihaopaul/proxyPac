@@ -3,9 +3,45 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/css/style.css' />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%- locals.LRScript %>
+
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+
+    <div class="container">
+    <br />
+      <div class="row">
+        <div class="hidden-xs col-sm-2">
+          <p><%= title %></p>
+        </div>
+        <div class="col-xs-12 col-sm-10">
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" <% if (page == 'servers') { %> class="active" <% } %>><a href="/servers">Servers <span class="badge"><%- servers.length || 0 %></span></a></li>
+            <li role="presentation" <% if (page == 'groups') { %> class="active" <% } %>><a href="/groups">Groups <span class="badge"><%- groups.length || 0 %></span></a></li>
+          </ul>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="jumbotron">
+        <% if (page == 'servers') { %>
+          <% include _partials/proxies %>
+        <% } else if(page == 'groups') { %>
+          <% include _partials/groups %>
+        <% } %>
+      </div>
+
+      <footer class="text-center"><%= title %>, Version <%= version %></footer>
+    </div>
+    <script type="text/javascript" src="/bower_components/jquery/dist/jquery.js" ></script>
+    <script type="text/javascript" src="/js/helper.js" ></script>
+    <script type="text/javascript" src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js" ></script>
+    <script type="text/javascript" src="/js/editProxy.js" ></script>
+    <script type="text/javascript" src="/js/deleteProxy.js" ></script>
+    <script type="text/javascript" src="/js/addProxy.js" ></script>
+
+
   </body>
 </html>
