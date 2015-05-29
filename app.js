@@ -16,7 +16,7 @@ var app = express();
 
 var livereload = require('express-livereload');
 
-
+var TestProxy = require('./models/proxytests');
 
 
 // view engine setup
@@ -50,6 +50,7 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
+
 
 
 

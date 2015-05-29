@@ -1,5 +1,4 @@
-var crypto = require('crypto');
-
+var sha1 = require('sha1');
 
 var ProxyServers = function(self) {
   this.db = self.db;
@@ -11,11 +10,7 @@ var ProxyServers = function(self) {
 ProxyServers.prototype = {
 
   createHash: function(data) {
-    var shasum = crypto.createHash('sha1', 'utf8');
-    shasum.update(data.type + data.address + data.port);
-    return shasum.digest('hex');
-
-
+    return sha1(data.type +''+ data.address +''+ data.port);
   },
   init: function() {
     if (this.handle == null) {
@@ -25,6 +20,9 @@ ProxyServers.prototype = {
   },
   fetchAll: function() {
     return this.db.getCollection(this.table).data;
+  },
+  fetchAllTestable: function() {
+    return this.handle.find({'test':{ '$eq' : 'true' }});
   },
   validIp: function(address) {
     if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(address)) {
@@ -41,7 +39,7 @@ ProxyServers.prototype = {
     return false;
   },
   create: function(data) {
-    console.log('create', data);
+
 
     var payload = {
       type: String(data.type) || '',
@@ -77,28 +75,45 @@ ProxyServers.prototype = {
   },
   isUnique: function(data) {
 
+    if (!data) {
+      return false;
+    }
+
     var payload = {
       hash: data.hash
     };
 
-    var i = this.handle.findOne(payload);
+    //the assumption is there should only ever be one match possible
+    var record = this.handle.findOne(payload);
 
-    //little more logic needed if all we want to do is change the state.
     /*
-      if we have a loki ID, we should defintly use it,
+      if we have a loki ID, we should defintly try and match it,
       problem is we need to check for conflicts first before reassigning it
     */
+    if (data.$loki && record) {
+      if (record.$loki == data.$loki) {
+        return true;
+      }
+    }
 
-    if (i == null) {
+    if (record == null) {
       return true;
     } else {
       return false;
     }
+
+
   },
-  update: function(data) {
-    console.log('update:', data);
+  update: function(payload) {
+
+    var data = payload;
+
     if (data.$loki) {
       data.$loki = Number(data.$loki);
+    }
+
+    if (!data.port) {
+      data.port = null;
     }
 
     if (data.type == '') {
@@ -116,12 +131,19 @@ ProxyServers.prototype = {
       payload.port = Number(data.port) || null;
       payload.test = data.test || 'false';
       payload.hash = this.createHash(payload);
+      delete payload.status;
+      this.handle.update(payload);
 
       return payload;
     } else {
       console.log('was not unique');
       return false;
     }
+  },
+  setStatus: function($loki, status) {
+    var server = this.read($loki);
+    server.status = status;
+    this.handle.update(server);
   },
   read: function(id) {
 

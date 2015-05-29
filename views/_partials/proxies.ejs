@@ -3,7 +3,7 @@
     <ul class=" nav nav-pills nav-stacked" >
       <% servers.forEach(function(el, index) { %>
         <li>
-          <button class="btn btn-primary btn-sm proxy-server" type="button" data-id="<%= el.$loki %>" >
+          <button class="btn btn-primary btn-sm proxy-server <% if (el.status=="offline" && el.test=="true") { %> btn-danger <% } %><% if (el.status=="online" && el.test=="true") { %> btn-success <% } %>" type="button" data-id="<%= el.$loki %>" >
             <% if (el.type == "DIRECT") { %>
               <%= el.type %>
             <% } else { %>
@@ -14,8 +14,6 @@
                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
                <% } %>
             <%  } %>
-
-
 
           </button>
         </li>

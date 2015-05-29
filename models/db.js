@@ -34,6 +34,6 @@ DataStore.prototype.index = function(req,res) {
 };
 
 
-var i = new DataStore();
 
-module.exports = i;
+
+module.exports = new DataStore();
