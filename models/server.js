@@ -55,7 +55,4 @@ var Server = (function() {
 })();
 
 
-var c = new Server('test', 'HTTP', '192.168.2.128', '8123');
-
-console.log(c.name, c.type, c.port, c.server, c.status);
-setTimeout(() =>  console.log("Status: ", c.status), 6001)
+module.exports = Server;
