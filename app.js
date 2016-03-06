@@ -7,12 +7,15 @@ var bodyParser = require('body-parser');
 
 var routes = require('./controllers/index');
 var servers = require('./controllers/servers');
+var ProxyPac = require('./models/proxyPac');
+
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+app.set('ProxyPac', ProxyPac);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

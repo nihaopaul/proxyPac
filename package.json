@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "nodemon ./bin/www"
+    "test": "nodemon -i db/ ./bin/www"
   },
   "dependencies": {
     "body-parser": "~1.13.1",
@@ -15,6 +15,8 @@
     "https-proxy-agent": "^1.0.0",
     "morgan": "~1.6.1",
     "node-sass-middleware": "0.8.0",
+    "passport": "^0.3.2",
+    "passport-http": "^0.3.0",
     "serve-favicon": "~2.3.0",
     "socks": "^1.1.8"
   }

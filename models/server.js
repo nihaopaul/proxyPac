@@ -16,25 +16,26 @@ var Server = (function() {
 
   const OFFLINE = false;
   const ONLINE = true;
+  const TESTINTERVAL = 5000;
   const DEFAULTS = {
     type: 'DIRECT', // HTTP,HTTPS,SOCKS4,SOCKS5,DIRECT
     name: 'default',
-    port: 8080,
-    server: '127.0.0.1'
+    port: undefined,
+    server: undefined
   };
 
-  //constructor
-  function Server(name, type, server, port) {
+  //constructor - expose only what you need to stringify..
+  function Server(obj) {
 
-    this.type = type || DEFAULTS.type;
-    this.name = name || DEFAULTS.name;
-    this.port = port || DEFAULTS.port;
-    this.server = server || DEFAULTS.server;
-    this.status = OFFLINE;
-    //run the proxy test
+    this.type = obj.type || DEFAULTS.type;
+    this.name = obj.name || DEFAULTS.name;
+    this.port = obj.port || DEFAULTS.port;
+    this.server = obj.server || DEFAULTS.server;
+
+    //run the proxy test, does not expose to stringify
     setInterval(
       () => this._test()
-    , 5000);
+    , TESTINTERVAL);
 
   };
 
