@@ -4,11 +4,28 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+
+var hbs = require('hbs');
+
+
 
 var routes = require('./controllers/index');
 var servers = require('./controllers/servers');
+var groups = require('./controllers/groups');
 var ProxyPac = require('./models/proxyPac');
+var Api = require('./controllers/api');
 
+hbs.registerHelper('json', function(context) {
+  var fn = eval(context);
+  return JSON.stringify(fn);
+});
+
+
+//Passport addon
+var passport = require('passport');
+var Strategy = require('passport-http').BasicStrategy;
+var Auth = require('./models/auth');
 
 var app = express();
 
@@ -18,6 +35,28 @@ app.set('view engine', 'hbs');
 app.set('ProxyPac', ProxyPac);
 
 // uncomment after placing your favicon in /public
+
+passport.use(new Strategy(
+  function(userid, password, done) {
+    Auth.findByUsername(userid, function (err, user) {
+      console.log('ran, ', userid);
+      if (err) { return done(err); }
+      if (!user) { return done(null, false); }
+      if (!user.verifyPassword(password)) { return done(null, false); }
+      return done(null, user);
+    });
+  }
+));
+
+app.use(require('express-session')({
+    secret: 'secureXpassword1',
+    resave: false,
+    saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -33,6 +72,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/servers', servers);
+app.use('/groups', groups);
+app.use('/api', Api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

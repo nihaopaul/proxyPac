@@ -10,13 +10,19 @@ router.all('/',passport.authenticate('basic', { session: false }));
 router.get('/',
   function(req, res, next) {
     var proxyPac = req.app.get('ProxyPac');
-    res.json(proxyPac.servers.get());
+    res.json(proxyPac.groups.get());
   });
 
 router.get('/name/:name',
   function(req, res) {
     var proxyPac = req.app.get('ProxyPac');
-    res.json(proxyPac.servers.findServerByName(req.params.name));
+    res.json(proxyPac.groups.findGroupByName(req.params.name));
+  });
+
+router.get('/id/:id',
+  function(req, res) {
+    var proxyPac = req.app.get('ProxyPac');
+    res.json(proxyPac.groups.findGroupByID(req.params.id));
   });
 
 module.exports = router;

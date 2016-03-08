@@ -4,9 +4,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-
-  var ProxyPac = req.app.get('ProxyPac');
-  res.render('index', { title: 'Express'});
+  res.render('api', { title: 'ProxyPac'});
 });
 
 module.exports = router;
