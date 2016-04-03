@@ -2,9 +2,10 @@
 * - TODO: Integrate/rewrite this.
 **/
 try {
-  var records = require('../db/auth.json') or [];
+  var records = require('../db/auth.json');
 } catch (e) {
   console.log('i know its bad, but: '. e);
+  var records = [];
 }
 
 
