@@ -1,7 +1,12 @@
 /**
 * - TODO: Integrate/rewrite this.
 **/
-var records = require('../db/auth.json') || [];
+try {
+  var records = require('../db/auth.json') or [];
+} catch (e) {
+  console.log('i know its bad, but: '. e);
+}
+
 
 exports.findByUsername = function(username, cb) {
   process.nextTick(function() {
