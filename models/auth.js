@@ -1,5 +1,5 @@
 /**
-* - TODO: Integrate/rewrite this.
+* - TODO: Integrate & rewrite this.
 **/
 try {
   var records = require('../db/auth.json');
