@@ -7,7 +7,6 @@ try {
   var records = [];
 }
 
-
 exports.findByUsername = function(username, cb) {
   process.nextTick(function() {
     for (var i = 0, len = records.length; i < len; i++) {
