@@ -28,10 +28,9 @@ node_modules
 
 # Debug log from npm
 npm-debug.log
-
-db/config.json
-models/auth.js
 bower_components
 
 *.css
 *.map
+db/auth.json
+db/config.json
