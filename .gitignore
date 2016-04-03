@@ -31,3 +31,7 @@ npm-debug.log
 
 db/config.json
 models/auth.js
+bower_components
+
+*.css
+*.map

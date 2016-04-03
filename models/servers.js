@@ -24,9 +24,9 @@ var Servers = (function() {
         this.servers.push(server);
       };
     },
-    findServerByName: function(name) {
+    findServerByID: function(ID) {
       for (let i in this.servers) {
-        if (this.servers[i].name === name) {
+        if (this.servers[i]._id == ID) {
           return this.servers[i];
         }
       }
@@ -34,6 +34,14 @@ var Servers = (function() {
     },
     get: function() {
       return this.servers;
+    },
+    create: function(obj) {
+      // @type:  HTTP,HTTPS,SOCKS4,SOCKS5,DIRECT
+      // @name: 'random name'
+      // @port: 8080
+      // @server: 'idealy an ip address'
+      let server = new Server(obj);
+      this.servers.push(server);
     },
 
   };

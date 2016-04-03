@@ -2,35 +2,45 @@
 <h2>Servers</h2>
 <ul>
   <li>
-    <a href="/servers" class="get">/servers</a>
+    <a href="/api/servers" class="get">/api/servers</a>
       <code>
         {{{json 'ProxyPac.servers.get()' }}}
       </code>
   </li>
   <li>
-    <a href="/servers/name/default" class="get">/servers/name/default</a>
+    <a href="/api/servers" class="post">/api/servers</a>
       <code>
-        {{{json 'ProxyPac.servers.findServerByName(\'default\')' }}}
+        @type:  HTTP,HTTPS,SOCKS4,SOCKS5,DIRECT
+        @name: 'Low Bandwidth link'
+        @port: 8080
+        @server: '127.0.0.1'
+      </code>
+  </li>
+  <li>
+    <a href="/api/server/id/{{ serverid }}" class="get">/api/server/id/{{ serverid }}</a>
+      <code>
+        {{{json 'ProxyPac.servers.findServerByID(\'Default\')' }}}
       </code>
     </li>
+
 </ul>
 
 <h2>Groups</h2>
 <ul>
   <li>
-    <a href="/groups" class="get">/groups</a>
+    <a href="/api/groups" class="get">/api/groups</a>
     <code>
       {{{json 'ProxyPac.groups.get()' }}}
     </code>
   </li>
   <li>
-    <a href="/groups/name/DIRECT" class="get">/groups/name/DIRECT</a>
+    <a href="/api/groups/name/DIRECT" class="get">/api/groups/name/DIRECT</a>
     <code>
       {{{json 'ProxyPac.groups.findGroupByName(\'Default\')' }}}
     </code>
   </li>
   <li>
-    <a href="/groups/id/1" class="get">/groups/id/1</a>
+    <a href="/api/groups/id/1" class="get">/api/groups/id/1</a>
     <code>
       {{{json 'ProxyPac.groups.findGroupByID(1)' }}}
     </code>

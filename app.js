@@ -11,8 +11,6 @@ var hbs = require('hbs');
 
 
 var routes = require('./controllers/index');
-var servers = require('./controllers/servers');
-var groups = require('./controllers/groups');
 var ProxyPac = require('./models/proxyPac');
 var Api = require('./controllers/api');
 
@@ -71,8 +69,6 @@ app.use(require('node-sass-middleware')({
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/servers', servers);
-app.use('/groups', groups);
 app.use('/api', Api);
 
 // catch 404 and forward to error handler

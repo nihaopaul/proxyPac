@@ -19,7 +19,7 @@ var Groups = (function() {
         this.groups.push(new Group(group_config[i]));
       }
       if (this.groups.length === 0) {
-        let group = new Group({"name": "Default", "_ID": 1, "_servers": ['Default'], "_urls": ['facebook.com', 'yahoo.com']});
+        let group = new Group({"name": "Default", "_id": 1, "_servers": ['Default'], "_urls": ['facebook.com', 'yahoo.com']});
         this.groups.push(group);
       }
     },
@@ -35,9 +35,9 @@ var Groups = (function() {
       return {};
     },
     findGroupByID: function(id) {
-      console.log("ID: ", id);
+
       for (let i in this.groups) {
-        if (this.groups[i]._ID == id) {
+        if (this.groups[i]._id == id) {
           return this.groups[i];
         }
       }
